@@ -7,9 +7,15 @@ import numpy as np
 
 
 class Transform(Protocol):
-
+    """
+        Base transformation classe
+    """
+    data = []
     @abstractmethod
     def __call__(self, value):
+        pass
+
+    def keys(self):
         pass
 
 
@@ -26,6 +32,9 @@ class FeatConfig(NamedTuple):
 
 
 class Feature:
+    """
+        Base class Feature
+    """
 
     feat: FeatConfig
 
@@ -34,8 +43,17 @@ class Feature:
 
 
 class OneHotEncoder(Transform):
+    """
+        One Hoe encoder transformation,
+        Categorical features needs a mapping file, to math with the training features
+    """
 
     def __init__(self, mapper):
+        """
+
+        Args:
+            mapper: Mapper file
+        """
         with open(mapper, 'r') as file:
             temp = json.load(file)
         self.data: dict = {k.lower(): v for k, v in temp.items()}
@@ -51,6 +69,9 @@ class OneHotEncoder(Transform):
 
 
 class IntEncoder:
+    """
+        A simple Int decoder, just match a str feature with a index int
+    """
 
     def __init__(self, mapper: str):
         with open(mapper, 'r') as file:
@@ -65,6 +86,9 @@ class IntEncoder:
 
 
 class Categorical(Feature):
+    """
+        Categorical feature
+    """
 
     def __init__(self, encoder: Transform):
         self.f = encoder
@@ -92,9 +116,10 @@ class Categorical(Feature):
         return len(self.f)
 
 
-
-
 class FeaturesGroup:
+    """
+        Function helper to orquestrate multiple Features and its transformations
+    """
 
     def __init__(self, features: List[Categorical]):
         self.group = features

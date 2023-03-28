@@ -9,6 +9,9 @@ from inference_server.feature_mgn.features import (Categorical, FeatConfig,
 
 
 class Preprocessing:
+    """
+        Preprocessing template executor
+    """
 
     def __init__(self,  template: List[FeatConfig]):
         self.fn = list(template)
@@ -23,16 +26,38 @@ class Preprocessing:
         return self._fg.encode(input_features)
 
     def hash(self, input_features: list):
+        """
+            Returns a hash hashable input features
+        Args:
+            input_features:
+
+        Returns: Hash of sum values
+
+        """
         return self._fg.hash(input_features)
 
 
 class ClassificationProtocol(Protocol):
+    """
+        Classifications task clase base
+    """
 
     def predict(self, inputs: list) -> Any:
+        """
+
+        Args:
+            inputs: raw features
+
+        Returns: ouput model
+
+        """
         pass
 
 
 class BinaryClassification(ClassificationProtocol):
+    """
+        Concrete implementation of a binary classification wrapper
+    """
 
     def __init__(self, input_shape, weights, pre, name=None):
         self.feats_in = input_shape
