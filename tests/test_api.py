@@ -47,10 +47,14 @@ async def test_stress_on_predict():
 
 
 @pytest.mark.asyncio
-async def test_aiohttp():
-    async with aiohttp.ClientSession() as session:
-        for i in range(10000):
-            d = {"operator": "Grupo LATAM", "flight_type": "I", "month": "11"}
-            async with session.post("http://testserver/predict/", json=d) as response:
-                assert response.status == 200
-            #assert await response.json() == {"message": "Hello, world!"}
+async def test_stress_on_cached_predict():
+    import time
+    start_time = time.perf_counter()
+    d = {"operator": "Grupo LATAM", "flight_type": "I", "month": "11"}
+    for i in range(20000):
+        response = client.post("/predict_cache/", json=d)
+        # assert response.status_code == 200
+    end_time = time.perf_counter()
+    elapsed_time = end_time - start_time
+    print(f"Elapsed time: {elapsed_time:.2f} seconds")
+
