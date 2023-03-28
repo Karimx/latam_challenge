@@ -3,6 +3,8 @@ from abc import abstractmethod
 from enum import Enum
 from typing import List, NamedTuple, Protocol
 
+import numpy as np
+
 
 class Transform(Protocol):
 
@@ -64,12 +66,8 @@ class IntEncoder:
 
 class Categorical(Feature):
 
-    def __init__(self, encoder: OneHotEncoder):
+    def __init__(self, encoder: Transform):
         self.f = encoder
-
-        # with open(mapper, 'r') as file:
-        #     temp = json.load(file)
-        # self.data: dict = {k.lower(): v for k, v in temp.items()}
 
     def encode(self, value: str):
         return self.f(value)
@@ -93,7 +91,7 @@ class Categorical(Feature):
     def __len__(self):
         return len(self.f)
 
-import numpy as np
+
 
 
 class FeaturesGroup:
