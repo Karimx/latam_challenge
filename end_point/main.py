@@ -5,29 +5,18 @@ import json
 from fastapi import FastAPI
 
 from end_point.schemas.features import PredictionInput
+from end_point.service import predict_delay_15
+
 
 app = FastAPI()
-cache = redis.Redis(host='localhost', port=6379)
-
-with open('logistic_regression_model.pkl', 'rb') as file:
-    model = pickle.load(file)
 
 
-@app.post("/predict")
-async def predict(input: PredictionInput):
-    # Convert input to a numpy array
-    input_array = [[input.feature1, input.feature2, input.feature3]]
+@app.post("/predict/")
+async def predict(input_: PredictionInput):
+    result = predict_delay_15([input_.operator, str(input_.flight_type), str(input_.month)])
+    # todo error handler
+    return {"prediction": result}
 
-    # Check if input values are already cached
-    cached_prediction = cache.get(json.dumps(input_array))
-    if cached_prediction is not None:
-        prediction = float(cached_prediction.decode('utf-8'))
-    else:
-        # Make a prediction using the loaded model
-        prediction = model.predict(input_array)[0]
-
-        # Store prediction in cache
-        cache.set(json.dumps(input_array), str(prediction))
-
-    # Return the prediction
-    return {"prediction": prediction}
+@app.post("/retrain/")
+async def retrain():
+    return {"status": 200}
