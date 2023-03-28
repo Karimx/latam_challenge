@@ -1,7 +1,7 @@
 import json
 from abc import abstractmethod
 from enum import Enum
-from typing import NamedTuple, Protocol, List
+from typing import List, NamedTuple, Protocol
 
 
 class Transform(Protocol):

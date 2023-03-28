@@ -1,13 +1,13 @@
-from pathlib import Path
-
 import pickle
 from enum import Enum
-
-from typing import Protocol, Callable, List, Tuple, NamedTuple, Any
+from pathlib import Path
+from typing import Any, Callable, List, NamedTuple, Protocol, Tuple
 
 import numpy as np
 
-from inference_server.feature_mgn.features import FeatConfig, FeatType, Categorical, FeaturesGroup
+from inference_server.feature_mgn.features import (Categorical, FeatConfig,
+                                                   FeatType, FeaturesGroup)
+
 #from loader import load
 
 #

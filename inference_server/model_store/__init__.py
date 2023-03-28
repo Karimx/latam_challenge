@@ -1,9 +1,8 @@
 from enum import Enum
 from pathlib import Path
 
-from inference_server.model_store.input_templates import airport_delay_15_template
-
-
+from inference_server.model_store.input_templates import \
+    airport_delay_15_template
 
 delay_15_weights = Path('log_delay_15.pkl')
 
