@@ -1,9 +1,8 @@
 from functools import wraps
 
-from inference_server.models import airport_delay_model
-
 from loguru import logger
 
+from inference_server.models import airport_delay_model
 
 __all__ = ["predict_delay_15"]
 

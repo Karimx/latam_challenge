@@ -1,6 +1,5 @@
 import os
 
-
 STAGES = ('development', 'production')
 ENV = os.getenv('ENV', 'production').lower()
 DEBUG = ENV != 'production'

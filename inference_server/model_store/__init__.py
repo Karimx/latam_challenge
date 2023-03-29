@@ -21,10 +21,10 @@ delay_15_metadata = {
     'input_shape': (1, 37)
 }
 
-
 models = {
     delay_15_metadata['name']: delay_15_metadata,
 }
+
 
 def model_repo(name: str):
     return models[name]
