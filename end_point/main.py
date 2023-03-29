@@ -59,7 +59,7 @@ async def predict_cache(input_: PredictionInput):
         redis_db.set(json.dumps(in_data), str(prediction))
     return {"prediction": prediction}
 
-@app.get("/predict_sample/")
+@app.get("/predict_test/")
 async def predict_sample():
     """ sample prediction end-point to perform stress test
 
@@ -71,7 +71,7 @@ async def predict_sample():
     # todo error handler
     return {"prediction": result}
 
-@app.get("/sample_cache/")
+@app.get("/predict_cache_test/")
 async def predict_sample_cache():
     """ sample prediction end-point to perform stress test, uses a redis database as cache
 
@@ -85,7 +85,6 @@ async def predict_sample_cache():
     else:
         prediction = predict_delay_15(sample)
         redis_db.set(json.dumps(sample), str(prediction))
-    # todo error handler
     return {"prediction": prediction}
 
 @app.get("/")

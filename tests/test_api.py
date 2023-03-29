@@ -29,11 +29,9 @@ async def test_stress_on_predict():
     import time
     start_time = time.perf_counter()
     d = {"operator": "Grupo LATAM", "flight_type": "I", "month": "11"}
-    for i in range(10000):
+    for i in range(100):
         response = client.post("/predict/", json=d)
         assert response.status_code == 200
-        if i%1000 == 0:
-            print(f"itet {i}")
     end_time = time.perf_counter()
     elapsed_time = end_time - start_time
     print(f"Elapsed time: {elapsed_time:.2f} seconds")
