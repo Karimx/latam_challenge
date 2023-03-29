@@ -22,6 +22,9 @@ def operator_index(index: int):
 
 
 class TipoVuelo(str, Enum):
+    """
+        Tipo de vuelo raw input feature
+    """
     nacional = 'N'
     internacional = 'I'
 
@@ -30,6 +33,9 @@ class TipoVuelo(str, Enum):
 
 
 class Mes(str, Enum):
+    """
+         Mes feature from date operation
+     """
     enero = "0"
     febrero = "1"
     marzo = "2"

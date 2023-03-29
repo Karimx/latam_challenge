@@ -57,8 +57,6 @@ async def predict_cache(input_: PredictionInput):
     else:
         prediction = predict_delay_15([input_.operator, str(input_.flight_type), str(input_.month)])
         redis_db.set(json.dumps(in_data), str(prediction))
-
-    # todo error handler
     return {"prediction": prediction}
 
 @app.get("/predict_sample/")
