@@ -1,6 +1,8 @@
+from functools import wraps
+
 from inference_server.models import airport_delay_model
 
-from functools import wraps
+from loguru import logger
 
 
 __all__ = ["predict_delay_15"]
@@ -10,7 +12,7 @@ def model_cache(func):
     def cached(*args, **kwargs):
         if not hasattr(func, "model"):
             func.model = airport_delay_model()
-            print("Model Cached!")
+            logger.info("Model Loaded and cached")
         return func(*args, **kwargs)
     return cached
 
