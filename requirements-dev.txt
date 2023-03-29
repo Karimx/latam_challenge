@@ -1,0 +1,8 @@
+flake8
+isort
+blue
+pytest
+httpx
+aiohttp
+pytest-asyncio
+# pre-commit
