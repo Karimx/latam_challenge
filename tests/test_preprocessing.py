@@ -1,9 +1,9 @@
-from end_point.schemas.features import operators,TipoVuelo,Mes
-from inference_server.feature_mgn.features import Categorical, FeaturesGroup, OneHotEncoder
-from inference_server.inference.core import Preprocessing
 from pathlib import Path
 
-
+from end_point.schemas.features import Mes, TipoVuelo, operators
+from inference_server.feature_mgn.features import (Categorical, FeaturesGroup,
+                                                   OneHotEncoder)
+from inference_server.inference.core import Preprocessing
 
 
 def preprocessing_test():
@@ -38,6 +38,8 @@ def test_feature_group_encode():
 
 
 import numpy as np
+
+
 class Tee:
     def __init__(self):
         self.data = [list(range(10)), list(range(2)), list(range(100, 105))]

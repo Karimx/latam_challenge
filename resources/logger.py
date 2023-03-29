@@ -1,6 +1,7 @@
 import logging
 
 from end_point.cfg import DEBUG
+
 # create a logger object
 logger = logging.getLogger('my_logger')
 if DEBUG:

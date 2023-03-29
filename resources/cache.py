@@ -1,7 +1,7 @@
 import redis
 from loguru import logger
 
-from end_point.cfg import REDIS_HOST, REDIS_PORT, CACHE_ACTIVE
+from end_point.cfg import CACHE_ACTIVE, REDIS_HOST, REDIS_PORT
 
 
 class Cache:

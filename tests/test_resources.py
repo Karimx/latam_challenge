@@ -1,6 +1,7 @@
+import json
+
 from inference_server.models import airport_delay_model
 from resources.cache import redis_db
-import json
 
 
 def test_cache_connection():

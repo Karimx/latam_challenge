@@ -6,7 +6,6 @@ from end_point.schemas.features import PredictionInput
 from end_point.service import predict_delay_15
 from resources.cache import redis_db
 
-
 app = FastAPI()
 
 

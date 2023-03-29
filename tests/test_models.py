@@ -1,5 +1,6 @@
-from inference_server.models import airport_delay_model
 import numpy as np
+
+from inference_server.models import airport_delay_model
 
 
 def test_plain_inference():
