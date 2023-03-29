@@ -1,8 +1,8 @@
 from fastapi.testclient import TestClient
 from end_point.main import app
-import asyncio
+
 import pytest
-import aiohttp
+
 
 client = TestClient(app)
 
