@@ -92,7 +92,8 @@ class PredictionInput(BaseModel):
 
 
 class PredictionOutput(BaseModel):
-    delay_proba = str
+    delay: str
+    no_delay: str
 
 
 delay_labels = {0: 'No Delay', 1: 'Delay'}
