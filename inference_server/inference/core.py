@@ -4,8 +4,12 @@ from typing import Any, List, Protocol
 
 import numpy as np
 
-from inference_server.feature_mgn.features import (Categorical, FeatConfig,
-                                                   FeatType, FeaturesGroup)
+from inference_server.feature_mgn.features import (
+    Categorical,
+    FeatConfig,
+    FeatType,
+    FeaturesGroup,
+)
 
 
 class Preprocessing:
@@ -76,4 +80,4 @@ class BinaryClassification(ClassificationProtocol):
 
     def __call__(self, inputs: list) -> float:
         raw_result = self.model.predict_proba(inputs)
-        return raw_result[1]
+        return raw_result
