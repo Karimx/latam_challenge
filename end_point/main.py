@@ -31,7 +31,8 @@ async def predict(input_: PredictionInput):
     result = predict_delay_15(
         [input_.operator, str(input_.flight_type), str(input_.month)]
     )
-    return {'prediction': result}
+    result = result[0]
+    return {'delay': result[1], 'no_delay': result[0]}
 
 
 @app.post('/retrain/')
@@ -79,8 +80,8 @@ async def predict_sample():
     """
     sample = ['sky airline', 'I', '8']
     result = predict_delay_15(sample)
-    # todo error handler
-    return {'prediction': result}
+    result = result[0]
+    return {'delay': result[1], 'no_delay': result[0]}
 
 
 @app.get('/predict_cache_test/')
