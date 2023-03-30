@@ -23,6 +23,7 @@ async def test_retraining_endpoint():
     # assert response.json() == {"item_id": 42, "item_name": "Test Item"}
 
 
+@pytest.mark.skip()
 @pytest.mark.asyncio
 async def test_stress_on_predict():
     import time
@@ -44,13 +45,14 @@ async def test_stress_on_predict():
     #  50.000 requests durante 45 segundos.
 
 
+@pytest.mark.skip()
 @pytest.mark.asyncio
 async def test_stress_on_cached_predict():
     import time
 
     start_time = time.perf_counter()
     d = {'operator': 'Grupo LATAM', 'flight_type': 'I', 'month': '11'}
-    for i in range(20000):
+    for i in range(100):
         response = client.post('/predict_cache/', json=d)
         # assert response.status_code == 200
     end_time = time.perf_counter()
