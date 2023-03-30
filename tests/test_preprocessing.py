@@ -35,8 +35,6 @@ def test_feature_group_encode():
     print(fg.hash([operators[0], operators[0]]))
 
 
-
-
 import numpy as np
 
 
@@ -54,8 +52,7 @@ class Tee:
         a = np.array([*self.data])
         return np.concatenate(a, axis=0)
 
+
 def test_t():
     t = Tee()
-    print(t.array() )
-
-
+    print(t.array())

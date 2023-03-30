@@ -11,15 +11,17 @@ def test_cache_connection():
 
     if cached_prediction is not None:
         prediction = cached_prediction.decode('utf-8')
-        print("from cache")
+        print('from cache')
     else:
         prediction = model.predict(sample)
         redis_db.set(json.dumps(sample), str(prediction))
 
-    print(f"prediction {prediction}")
+    print(f'prediction {prediction}')
     cached_prediction = redis_db.get(json.dumps(sample))
 
-    print(f"cached {cached_prediction}")
+    print(f'cached {cached_prediction}')
     assert cached_prediction is not None
     # return {"prediction": result}
+
+
 #   redict_delay_15([input_.operator, str(input_.flight_type), str(input_.month)])

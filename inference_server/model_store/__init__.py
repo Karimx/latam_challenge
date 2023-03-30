@@ -8,7 +8,7 @@ delay_15_weights = Path('log_delay_15.pkl')
 
 
 class KeyMetadata(str, Enum):
-    NAME = 'name',
+    NAME = ('name',)
     WEIGHTS = 'weights'
     TEMPLATE = 'input_template'
     SHAPE = 'input_shape'
@@ -18,7 +18,7 @@ delay_15_metadata = {
     'name': 'delay_15',
     'weights': delay_15_weights,
     'input_template': airport_delay_15_template(),
-    'input_shape': (1, 37)
+    'input_shape': (1, 37),
 }
 
 models = {

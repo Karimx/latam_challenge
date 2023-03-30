@@ -1,8 +1,8 @@
 flake8
 isort
-blue
+blue==0.9.1
 pytest
 httpx
 aiohttp
 pytest-asyncio
-# pre-commit
+pre-commit

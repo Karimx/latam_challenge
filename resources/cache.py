@@ -6,16 +6,18 @@ from end_point.cfg import CACHE_ACTIVE, REDIS_HOST, REDIS_PORT
 
 class Cache:
     """
-        Fake in-memory cache
+    Fake in-memory cache
     """
+
     def __init__(self):
         self.data = {}
 
     def get(self, key: str) -> str:
-        return  self.data.get(key)
+        return self.data.get(key)
 
     def set(self, key: dict, value: str):
         self.data[key] = value
+
 
 # json.dumps(sample)
 def cache():
@@ -24,14 +26,10 @@ def cache():
             c = redis.Redis(host=REDIS_HOST, port=REDIS_PORT)
         except Exception:
             c = Cache()
-            logger.error("Conection error cache server")
+            logger.error('Conection error cache server')
     else:
         c = Cache()
     return c
 
 
 redis_db = cache()
-
-
-
-
