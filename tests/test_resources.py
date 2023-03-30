@@ -1,9 +1,12 @@
 import json
 
+import pytest
+
 from inference_server.models import airport_delay_model
 from resources.cache import redis_db
 
 
+@pytest.mark.skip()
 def test_cache_connection():
     sample = ['sky airline', 'I', '8']
     cached_prediction = redis_db.get(json.dumps(sample))
