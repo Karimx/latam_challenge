@@ -8,9 +8,11 @@ import numpy as np
 
 class Transform(Protocol):
     """
-        Base transformation classe
+    Base transformation classe
     """
+
     data = []
+
     @abstractmethod
     def __call__(self, value):
         pass
@@ -33,7 +35,7 @@ class FeatConfig(NamedTuple):
 
 class Feature:
     """
-        Base class Feature
+    Base class Feature
     """
 
     feat: FeatConfig
@@ -44,8 +46,8 @@ class Feature:
 
 class OneHotEncoder(Transform):
     """
-        One Hoe encoder transformation,
-        Categorical features needs a mapping file, to math with the training features
+    One Hoe encoder transformation,
+    Categorical features needs a mapping file, to math with the training features
     """
 
     def __init__(self, mapper):
@@ -70,7 +72,7 @@ class OneHotEncoder(Transform):
 
 class IntEncoder:
     """
-        A simple Int decoder, just match a str feature with a index int
+    A simple Int decoder, just match a str feature with a index int
     """
 
     def __init__(self, mapper: str):
@@ -87,7 +89,7 @@ class IntEncoder:
 
 class Categorical(Feature):
     """
-        Categorical feature
+    Categorical feature
     """
 
     def __init__(self, encoder: Transform):
@@ -101,13 +103,13 @@ class Categorical(Feature):
 
     def hash(self, value: str):
         try:
-            v = self.f.data[value]
+            self.f.data[value]
         except KeyError:
-            print("log no key found")
+            print('log no key found')
         return value.__hash__()
 
     def __str__(self):
-        return f"{self.f}"
+        return f'{self.f}'
 
     def encodig(self):
         return len(self.f.data[0])
@@ -118,7 +120,7 @@ class Categorical(Feature):
 
 class FeaturesGroup:
     """
-        Function helper to orquestrate multiple Features and its transformations
+    Function helper to orquestrate multiple Features and its transformations
     """
 
     def __init__(self, features: List[Categorical]):
@@ -139,5 +141,3 @@ class FeaturesGroup:
 
     def hash(self, values):
         return hash(sum([x.hash(y) for x, y in zip(self.group, values)]))
-
-

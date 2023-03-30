@@ -10,10 +10,10 @@ from inference_server.feature_mgn.features import (Categorical, FeatConfig,
 
 class Preprocessing:
     """
-        Preprocessing template executor
+    Preprocessing template executor
     """
 
-    def __init__(self,  template: List[FeatConfig]):
+    def __init__(self, template: List[FeatConfig]):
         self.fn = list(template)
         self.__features = []
         for f in self.fn:
@@ -39,7 +39,7 @@ class Preprocessing:
 
 class ClassificationProtocol(Protocol):
     """
-        Classifications task clase base
+    Classifications task clase base
     """
 
     def predict(self, inputs: list) -> Any:
@@ -51,27 +51,29 @@ class ClassificationProtocol(Protocol):
         Returns: ouput model
 
         """
-        pass
 
 
 class BinaryClassification(ClassificationProtocol):
     """
-        Concrete implementation of a binary classification wrapper
+    Concrete implementation of a binary classification wrapper
     """
 
     def __init__(self, input_shape, weights, pre, name=None):
         self.feats_in = input_shape
         self.pre = pre
-        loaded_model = pickle.load(open(Path(__file__).parent.joinpath('..','model_store', weights), 'rb'))
+        loaded_model = pickle.load(
+            open(
+                Path(__file__).parent.joinpath('..', 'model_store', weights),
+                'rb',
+            )
+        )
         self.model = loaded_model
-
 
     def predict(self, inputs: list) -> float:  # input squema
         f = self.pre(inputs)
-        raw_result = self.model.predict_proba(np.reshape(f,(1, 37)))
+        raw_result = self.model.predict_proba(np.reshape(f, (1, 37)))
         return raw_result
 
     def __call__(self, inputs: list) -> float:
         raw_result = self.model.predict_proba(inputs)
         return raw_result[1]
-

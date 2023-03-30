@@ -17,18 +17,19 @@ else:
     file_handler.setLevel(logging.CRITICAL)
 
 
-
 # create a console handler to output log messages to the console
 # console_handler = logging.StreamHandler()
 # console_handler.setLevel(logging.DEBUG)
 
 # create a formatter to specify the log message format
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+formatter = logging.Formatter(
+    '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
 
 # add the formatter to the handlers
 file_handler.setFormatter(formatter)
-#console_handler.setFormatter(formatter)
+# console_handler.setFormatter(formatter)
 
 # add the handlers to the logger
 logger.addHandler(file_handler)
-#logger.addHandler(console_handler)
+# logger.addHandler(console_handler)
