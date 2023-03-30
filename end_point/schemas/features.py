@@ -80,6 +80,16 @@ class PredictionInput(BaseModel):
     month: Mes
     proba: bool = True
 
+    class Config:
+        schema_extra = {
+            'example': {
+                'operator': 'Foo',
+                'flight_type': 'I',
+                'month': '10',
+                'proba': True,
+            }
+        }
+
 
 class PredictionOutput(BaseModel):
     delay_proba = str
