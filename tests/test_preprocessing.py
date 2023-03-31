@@ -11,7 +11,7 @@ from tests.data.test_data import operators
 
 
 def test_feature_can_decode_onehotmap():
-    f = Path('../inference_server/feature_storage/hotmap_operator.json')
+    f = Path('data/hot_map.json')
     operator_feat = Categorical(OneHotEncoder(f))
     print(operator_feat.encode(operators[0]))
     assert sum(operator_feat.encode(operators[0])) == 1
@@ -20,7 +20,7 @@ def test_feature_can_decode_onehotmap():
 
 
 def test_feature_group_encode():
-    f = Path('../inference_server/feature_storage/hotmap_operator.json')
+    f = Path('data/hot_map.json')
     feat1 = Categorical(OneHotEncoder(f))
     feat2 = Categorical(OneHotEncoder(f))
     fg = FeaturesGroup([feat1, feat2])
