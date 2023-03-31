@@ -1,16 +1,13 @@
 from pathlib import Path
 
-from end_point.schemas.features import Mes, TipoVuelo, operators
-from inference_server.feature_mgn.features import (Categorical, FeaturesGroup,
-                                                   OneHotEncoder)
-from inference_server.inference.core import Preprocessing
+import numpy as np
 
-
-def preprocessing_test():
-    operators
-    TipoVuelo
-    Mes
-    Preprocessing()
+from end_point.schemas.features import operators
+from inference_server.feature_mgn.features import (
+    Categorical,
+    FeaturesGroup,
+    OneHotEncoder,
+)
 
 
 def test_feature_can_decode_onehotmap():
@@ -33,9 +30,6 @@ def test_feature_group_encode():
     print(enc)
     print(len(enc))
     print(fg.hash([operators[0], operators[0]]))
-
-
-import numpy as np
 
 
 class Tee:
