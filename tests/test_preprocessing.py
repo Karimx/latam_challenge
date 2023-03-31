@@ -2,12 +2,12 @@ from pathlib import Path
 
 import numpy as np
 
-from end_point.schemas.features import operators
 from inference_server.feature_mgn.features import (
     Categorical,
     FeaturesGroup,
     OneHotEncoder,
 )
+from tests.data.test_data import operators
 
 
 def test_feature_can_decode_onehotmap():
